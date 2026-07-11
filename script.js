@@ -12,7 +12,7 @@
     p.className = 'page';
     p.style.zIndex = (TOTAL - i);
     p.innerHTML =
-      '<div class="face front"><img src="images/' + (i+1) + '.jpg" alt="Halaman ' + (i+1) + '" draggable="false"><div class="pnum">' + (i===0? 'Cover' : (i===TOTAL-1? 'Sources' : ('Page ' + i))) + '</div></div>' +
+      '<div class="face front"><img src="images/' + (i+1) + '.jpg" alt="Halaman ' + (i+1) + '" draggable="false"></div>' +
       '<div class="face back"><div class="mark">&#10070;</div></div>';
     book.appendChild(p);
     pages.push(p);
@@ -29,8 +29,8 @@
     prevBtn.classList.toggle('disabled', current === 0);
     nextBtn.classList.toggle('disabled', current === TOTAL);
     if (current === 0) indicator.textContent = 'Sampul';
-    else if (current === TOTAL) indicator.textContent = 'The End';
-    else indicator.textContent = 'Page ' + current + ' / ' + (TOTAL-1);
+    else if (current === TOTAL) indicator.textContent = 'Selesai';
+    else indicator.textContent = 'Hal. ' + current + ' / ' + (TOTAL-1);
   }
 
   var animating = false;
@@ -96,10 +96,16 @@
     if (e.key === 'ArrowLeft') goPrev();
   });
 
-  // swipe support
+  // swipe support (diabaikan saat pinch-zoom / 2 jari)
   var touchX = null;
-  document.addEventListener('touchstart', function(e){ touchX = e.changedTouches[0].clientX; }, {passive:true});
+  var multiTouch = false;
+  document.addEventListener('touchstart', function(e){
+    if (e.touches.length > 1){ multiTouch = true; touchX = null; return; }
+    multiTouch = false;
+    touchX = e.changedTouches[0].clientX;
+  }, {passive:true});
   document.addEventListener('touchend', function(e){
+    if (multiTouch){ multiTouch = false; touchX = null; return; }
     if (touchX === null) return;
     var dx = e.changedTouches[0].clientX - touchX;
     if (Math.abs(dx) > 50){ dx < 0 ? goNext() : goPrev(); }
