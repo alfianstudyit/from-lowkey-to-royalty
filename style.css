@@ -201,11 +201,6 @@ body::after{
   border:1px solid var(--gold-dim);
   opacity:0.5;
 }
-.page .back .mark{
-  font-family:'Cinzel Decorative', serif;
-  color:var(--gold-dim);
-  font-size:13vw; max-font-size:60px; opacity:0.35;
-}
 .page .front::after{
   /* fold shadow gradient, brightens sense of paper curve */
   content:"";
