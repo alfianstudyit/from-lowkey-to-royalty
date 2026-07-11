@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>From Lowkey to Royalty — Codex Anglicus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="stage">
+
+  <!-- Ambient candles -->
+  <div class="candle-wrap">
+    <div class="glow"></div>
+    <div class="flame"></div>
+    <div class="wick"></div>
+    <div class="candle-body"></div>
+    <div class="candle-stem"></div>
+    <div class="candle-holder"></div>
+  </div>
+  <div class="candle-wrap right">
+    <div class="glow"></div>
+    <div class="flame"></div>
+    <div class="wick"></div>
+    <div class="candle-body"></div>
+    <div class="candle-stem"></div>
+    <div class="candle-holder"></div>
+  </div>
+
+  <div class="motes" id="motes"></div>
+
+  <div class="brand">
+  </div>
+
+  <button class="icon-btn sound" id="soundBtn" title="Bunyikan / Bisukan musik">&#9835;</button>
+  <button class="icon-btn help" id="helpBtn" title="Cara membaca">?</button>
+
+  <div class="book-shadow"></div>
+  <div class="perspective">
+    <div class="book" id="book">
+      <div class="spine"></div>
+      <div class="cover-frame"></div>
+      <!-- pages injected by JS -->
+    </div>
+  </div>
+
+  <div class="zone left" id="zoneLeft"></div>
+  <div class="zone right" id="zoneRight"></div>
+
+  <div class="controls">
+    <div class="nav-btn" id="prevBtn">&#10094;</div>
+    <div class="page-indicator" id="pageIndicator">Cover</div>
+    <div class="nav-btn" id="nextBtn">&#10095;</div>
+  </div>
+
+  <div class="hint" id="hint">Tap the edge of the page, or use the arrows, to turn the page</div>
+</div>
+
+<div class="intro" id="intro">
+  <div class="seal">FR</div>
+  <h1>From Lowkey to Royalty</h1>
+  <p>A Renaissance manuscript about how the English language went from identity crisis to world domination.</p>
+  <button class="open-btn" id="openBtn">Open the BooK</button>
+</div>
+
+<!-- Ganti "music/background.mp3" dengan file musikmu sendiri -->
+<audio id="bgMusic" src="music/background.mp3" loop preload="auto"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
