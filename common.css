@@ -201,6 +201,11 @@ body::after{
   border:1px solid var(--gold-dim);
   opacity:0.5;
 }
+.page .back .mark{
+  font-family:'Cinzel Decorative', serif;
+  color:var(--gold-dim);
+  font-size:13vw; max-font-size:60px; opacity:0.35;
+}
 .page .front::after{
   /* fold shadow gradient, brightens sense of paper curve */
   content:"";
@@ -307,16 +312,4 @@ body::after{
   color:rgba(236,217,168,0.65); z-index:39; letter-spacing:0.03em;
   text-shadow:0 2px 6px rgba(0,0,0,0.8);
   transition:opacity 1s ease;
-}
-
-@media (max-width:600px){
-  .brand{ top:1.4vh; max-width:62vw; }
-  .brand .eyebrow{ font-size:8px; letter-spacing:0.28em; }
-  .brand h1{ font-size:14px; }
-  .controls{ gap:12px; }
-  .nav-btn{ width:40px;height:40px; font-size:16px; }
-  .icon-btn{ width:36px;height:36px; font-size:15px; }
-  .book{ width:min(94vw, 440px); }
-  .book-shadow{ width:min(92vw, 430px); }
-  .hint{ font-size:11px; bottom:11vh; padding:0 6vw; }
 }

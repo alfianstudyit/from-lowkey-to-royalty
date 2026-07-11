@@ -28,9 +28,9 @@
   function updateUI(){
     prevBtn.classList.toggle('disabled', current === 0);
     nextBtn.classList.toggle('disabled', current === TOTAL);
-    if (current === 0) indicator.textContent = 'Sampul';
-    else if (current === TOTAL) indicator.textContent = 'Selesai';
-    else indicator.textContent = 'Hal. ' + current + ' / ' + (TOTAL-1);
+    if (current === 0) indicator.textContent = 'Cover';
+    else if (current === TOTAL) indicator.textContent = 'The End';
+    else indicator.textContent = 'Page ' + current + ' / ' + (TOTAL-1);
   }
 
   var animating = false;
@@ -154,13 +154,14 @@
   }
 
   // ================= AUDIO =================
-  // Suara balik halaman tetap dibuat secara prosedural (Web Audio),
-  // sedangkan musik latar sekarang memakai file audio milikmu sendiri
-  // lewat elemen <audio id="bgMusic"> di index.html (lihat folder /music).
+  // Suara balik halaman sekarang memakai file audio asli dari folder /music
+  // (music/flip_effect.mp3), sedangkan musik latar tetap memakai
+  // elemen <audio id="bgMusic"> di index.html.
   var ctx = null;
   var masterGain = null;
   var muted = false;
   var bgMusic = document.getElementById('bgMusic');
+  var flipSound = document.getElementById('flipSound');
 
   function initAudio(){
     if (ctx) return;
@@ -171,50 +172,13 @@
     masterGain.connect(ctx.destination);
   }
 
-  // --- Page flip sound: filtered noise burst, like parchment/paper swoosh ---
+  // --- Page flip sound: diputar dari file music/flip_effect.mp3 ---
   function playFlip(){
-    if (!ctx || muted) { return; }
-    var now = ctx.currentTime;
-    var dur = 0.5;
-    var bufferSize = ctx.sampleRate * dur;
-    var buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-    var data = buffer.getChannelData(0);
-    for (var i = 0; i < bufferSize; i++){
-      data[i] = (Math.random()*2-1) * Math.pow(1 - i/bufferSize, 1.6);
-    }
-    var noise = ctx.createBufferSource();
-    noise.buffer = buffer;
-
-    var bp = ctx.createBiquadFilter();
-    bp.type = 'bandpass';
-    bp.frequency.setValueAtTime(900, now);
-    bp.frequency.exponentialRampToValueAtTime(2600, now + 0.22);
-    bp.frequency.exponentialRampToValueAtTime(1200, now + dur);
-    bp.Q.value = 0.7;
-
-    var hp = ctx.createBiquadFilter();
-    hp.type = 'highpass';
-    hp.frequency.value = 400;
-
-    var g = ctx.createGain();
-    g.gain.setValueAtTime(0.0001, now);
-    g.gain.exponentialRampToValueAtTime(0.5, now + 0.06);
-    g.gain.exponentialRampToValueAtTime(0.0001, now + dur);
-
-    noise.connect(bp); bp.connect(hp); hp.connect(g); g.connect(masterGain);
-    noise.start(now);
-    noise.stop(now + dur + 0.05);
-
-    // soft tap transient (like corner of paper)
-    var tap = ctx.createOscillator();
-    tap.type = 'triangle';
-    tap.frequency.value = 180;
-    var tg = ctx.createGain();
-    tg.gain.setValueAtTime(0.0001, now);
-    tg.gain.exponentialRampToValueAtTime(0.12, now + 0.01);
-    tg.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
-    tap.connect(tg); tg.connect(masterGain);
-    tap.start(now); tap.stop(now + 0.15);
+    if (muted || !flipSound) { return; }
+    // clone node biar bisa overlap kalau user klik cepat berkali-kali
+    var s = flipSound.cloneNode(true);
+    s.volume = 0.85;
+    s.play().catch(function(){ /* menunggu interaksi user jika autoplay diblokir */ });
   }
 
   // --- Musik latar dari file audio (bgMusic) ---
@@ -233,8 +197,9 @@
   soundBtn.addEventListener('click', function(){
     if (!ctx){ initAudio(); startMusic(); muted=false; soundBtn.style.opacity=1; return; }
     muted = !muted;
-    masterGain.gain.value = muted ? 0 : 0.85;
+    if (masterGain) masterGain.gain.value = muted ? 0 : 0.85;
     if (bgMusic) bgMusic.volume = muted ? 0 : 0.5;
+    if (flipSound) flipSound.volume = muted ? 0 : 0.85;
     soundBtn.style.opacity = muted ? 0.45 : 1;
   });
 

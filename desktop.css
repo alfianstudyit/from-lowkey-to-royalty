@@ -1,0 +1,12 @@
+/* ====== desktop.css ======
+   Hanya dimuat di layar >600px (lihat atribut media di index.html).
+   Ukuran dasar buku & elemen UI mengikuti common.css (sudah pas untuk
+   layar besar). File ini untuk tambahan khusus desktop, misalnya
+   layar lebar yang ingin tampilan lebih lega. */
+
+@media (min-width:1200px){
+  .book{ width:min(46vw, 460px); }
+  .book-shadow{ width:min(44vw, 450px); }
+  .controls{ gap:22px; bottom:3vh; }
+  .brand h1{ font-size:28px; }
+}

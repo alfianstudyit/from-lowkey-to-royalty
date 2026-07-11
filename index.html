@@ -7,7 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="common.css">
+<link rel="stylesheet" href="desktop.css" media="(min-width: 601px)">
+<link rel="stylesheet" href="mobile.css" media="(max-width: 600px)">
 </head>
 <body>
 
@@ -53,7 +55,7 @@
 
   <div class="controls">
     <div class="nav-btn" id="prevBtn">&#10094;</div>
-    <div class="page-indicator" id="pageIndicator">Cover</div>
+    <div class="page-indicator" id="pageIndicator">Sampul</div>
     <div class="nav-btn" id="nextBtn">&#10095;</div>
   </div>
 
@@ -61,7 +63,7 @@
 </div>
 
 <div class="intro" id="intro">
-  <div class="seal">FR</div>
+  <div class="seal"></div>
   <h1>From Lowkey to Royalty</h1>
   <p>A Renaissance manuscript about how the English language went from identity crisis to world domination.</p>
   <button class="open-btn" id="openBtn">Open the BooK</button>
@@ -69,7 +71,8 @@
 
 <!-- Ganti "music/background.mp3" dengan file musikmu sendiri -->
 <audio id="bgMusic" src="music/backgroundmusic.mpeg" loop preload="auto"></audio>
+<audio id="flipSound" src="music/flip_effect.mp3" preload="auto"></audio>
 
-<script src="script.js"></script>
+<script src="js.js"></script>
 </body>
 </html>

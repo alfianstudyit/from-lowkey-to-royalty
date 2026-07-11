@@ -1,0 +1,16 @@
+/* ====== mobile.css ======
+   Hanya dimuat di layar <=600px (lihat atribut media di index.html).
+   Berisi penyesuaian ukuran supaya buku lebih besar & mudah dizoom di HP. */
+
+.brand{ top:1.4vh; max-width:62vw; }
+.brand .eyebrow{ font-size:8px; letter-spacing:0.28em; }
+.brand h1{ font-size:14px; }
+
+.controls{ gap:12px; }
+.nav-btn{ width:40px;height:40px; font-size:16px; }
+.icon-btn{ width:36px;height:36px; font-size:15px; }
+
+.book{ width:min(94vw, 440px); }
+.book-shadow{ width:min(92vw, 430px); }
+
+.hint{ font-size:11px; bottom:11vh; padding:0 6vw; }
