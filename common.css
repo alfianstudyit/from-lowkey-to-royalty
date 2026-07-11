@@ -276,15 +276,7 @@ body::after{
   transition:opacity 0.9s ease, visibility 0.9s ease;
 }
 .intro.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
-.intro .seal{
-  width:96px;height:96px;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%, #8a2830, var(--burgundy) 60%, #300a0d 100%);
-  border:2px solid var(--gold);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Cinzel Decorative', serif; color:var(--gold-bright); font-size:34px;
-  box-shadow:0 0 40px rgba(201,162,74,0.35), 0 6px 20px rgba(0,0,0,0.6);
-  margin-bottom:6px;
-}
+
 .intro h1{
   font-family:'Cinzel Decorative', serif; color:var(--gold-bright);
   font-size:clamp(24px,4.4vw,42px); margin:0; letter-spacing:0.04em;
